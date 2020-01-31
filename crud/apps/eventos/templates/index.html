@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <meta name="theme-color" content="#000000" />
+
+    <title>Eventos </title>
+
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+ 
+    {# CSS Bootstrap #}
+    {% bootstrap_css %}
+
+    {# Widget Tweaks #}
+    {% load widget_tweaks %}
+
+    {# Archivos #}
+    {% load static %}
+    
+  </head>
+  <body>
+    <main role="main">
+      {% if user.is_authenticated %}
+        <script type="text/javascript">
+          window.location="/eventos";
+        </script>
+      {% endif %}
+      <div class="container text-center mt-5">
+
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <h1 style="font-size: 28px;">Eventos </h1>              
+          </div>
+        </div>          
+
+        <div class="row mb-5">
+          
+
+            <div class="table-responsive">
+
+              <div class="formulario" align="left">
+
+                <h4>Login</h4>
+                <form method="post" enctype="multipart/form-data">  
+                {% csrf_token %}  
+                  <div class="form-group">
+                    <label for="username" class="txt_negrita">Correo</label>
+                      {{ form.username|add_class:"form-control" }} 
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="txt_negrita">Contraseña</label>
+                      {{ form.password|add_class:"form-control" }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
+                  </div>
+                  <div class="form-group">
+                    <a href="#" >Olvidé mi contraseña</a>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                  </div>
+                  <a href="{% url 'registro' %}">Darse de alta</a>  
+                </form>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </main>
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+     
+  </body>
+</html>
